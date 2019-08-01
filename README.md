@@ -1,7 +1,7 @@
 # codefundo_azureblockchains
 codefundo.io 2019 azure blockchains project
 
-My idea is to create a unified secure and fast voting system using azure block chains. Every node(voter) has an Aadhar card number , which will be used To accessthe ledger(that keeps the track of votes)
+My idea is to create a unified secure and fast voting system using azure block chains. Every node(voter) has an Aadhar card number , which will be used To access the ledger(that keeps the track of votes)
 After gaining access to the ledger you can cast your vote,this process involves States that goes into azure block chains.
 Taking a successful casting or transaction your details are locked into the ledger.
 The rules of the following voting for high security can be defined in the json file later on during development.
