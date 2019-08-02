@@ -1,7 +1,7 @@
 pragma solidity >=0.4.25 <0.6.0;
 
 contract ElectronicVoting{
-    enum StateType {ActiveVoter,Person_Verified,Biometrics_Verified,Aadhar_Verified,TimeOut,Vote_Casted} 
+    enum StateType {ActiveVoter,Person_Verified,Biometrics_Verified,Aadhar_Verified,TimeOut,Vote_Casted,DONE} 
     address public Voter;
     address public Physical_Verifier;
     address public Biometric_Verifier;
@@ -57,6 +57,11 @@ contract ElectronicVoting{
         }
         if(!(compareStrings(dob,DOB)&&compareStrings(aadhar, Aadhar)&&compareStrings(voterid,VoterID))){
             revert("details don't match from record");
+            string memory aadharnew;
+            string memory namenew;
+            string memory dobnew;
+            string memory voteridnew;
+            Modify(aadharnew,namenew,dobnew,voteridnew);
         }
 
         State = StateType.Person_Verified;
@@ -78,14 +83,16 @@ contract ElectronicVoting{
         }
         if(!(compareStrings(aadhar, Aadhar))){
             revert("details do not match");
+
         }
         State = StateType.Aadhar_Verified;
     }
 
     function CastedVoteChecker(string memory Party) public{
-        if(State != StateType.Biometrics_Verified){
+        if(State != StateType.Aadhar_Verified){
             Vote = Party;
         }
+        State = StateType.DONE;
     }
 
     function TimeoutChecker(string memory startTime, string memory MAX_TIME) public{
